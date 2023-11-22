@@ -54,4 +54,4 @@ def get_prompt() -> str:
 
 
 def print_prompt() -> None:
-    print(get_prompt())
+    print(get_prompt(), end="")
