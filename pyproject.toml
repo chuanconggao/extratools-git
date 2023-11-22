@@ -27,6 +27,9 @@ ansicolors = "^1.1.8"
 pytest = "^7.4.3"
 pytest-cov = "^4.1.0"
 
+[tool.poetry.scripts]
+print_prompt = 'extratools_gittools.prompt:print_prompt'
+
 [tool.pytest.ini_options]
 addopts = "--cov --cov-report xml:cov.xml --cov-report html --cov-report term-missing"
 pythonpath = [

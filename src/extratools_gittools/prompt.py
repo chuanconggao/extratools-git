@@ -51,3 +51,7 @@ def get_prompt() -> str:
         prompt += ':' + local_flags
 
     return prompt
+
+
+def print_prompt() -> None:
+    print(get_prompt())
