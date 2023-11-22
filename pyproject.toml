@@ -15,7 +15,9 @@ strict = true
 name = "extratools-gittools"
 version = "0.1.0"
 description = ""
+license = "MIT"
 authors = ["Chuancong Gao <chuanconggao@users.noreply.github.com>"]
+repository = "https://github.com/chuanconggao/extratools-gittools"
 readme = "README.md"
 
 [tool.poetry.dependencies]
