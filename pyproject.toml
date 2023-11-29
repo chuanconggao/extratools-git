@@ -28,6 +28,8 @@ ansicolors = "^1.1.8"
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.3"
 pytest-cov = "^4.1.0"
+flake8 = "^6.1.0"
+mypy = "^1.7.1"
 
 [tool.poetry.scripts]
 print_git_prompt = 'extratools_gittools.prompt:print_prompt'
