@@ -35,7 +35,7 @@ mypy = "^1.7.1"
 print_git_prompt = 'extratools_gittools.prompt:print_prompt'
 
 [tool.pytest.ini_options]
-addopts = "--cov --cov-report xml:cov.xml --cov-report html --cov-report term-missing"
+addopts = "--cov --cov-report xml:cov.xml --cov-report html --cov-report term-missing tests"
 pythonpath = [
     "src",
 ]
