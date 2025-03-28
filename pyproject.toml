@@ -24,7 +24,6 @@ print_git_prompt = "extratools_git.prompt:print_prompt"
 [dependency-groups]
 dev = [
     "pytest-cov>=4.1.0",
-    "flake8>=6.1.0",
     "mypy>=1.7.1",
 ]
 
