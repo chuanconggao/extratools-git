@@ -1,14 +1,14 @@
-import os
-from typing import Any, Optional
+from pathlib import Path
+from typing import Any
 
 import sh
 
 
-def get_status(path: str = '.') -> Optional[dict[str, Any]]:
+def get_status(path: str = '.') -> dict[str, Any] | None:
     try:
         output: str = str(sh.git(
             "status", "--short", "--branch", "--porcelain=2",
-            _cwd=os.path.expanduser(path)
+            _cwd=Path(path).expanduser(),
         ))
     except Exception:
         return None
@@ -20,10 +20,10 @@ def get_status(path: str = '.') -> Optional[dict[str, Any]]:
 
 
 def parse_status(output: str) -> dict[str, Any]:
-    oid: Optional[str] = None
+    oid: str | None = None
 
-    head: Optional[str] = None
-    upstream: Optional[str] = None
+    head: str | None = None
+    upstream: str | None = None
 
     ahead: int = 0
     behind: int = 0
@@ -67,15 +67,15 @@ def parse_status(output: str) -> dict[str, Any]:
         "oid": oid,
         "branch": {
             "head": head,
-            "upstream": upstream
+            "upstream": upstream,
         },
         "commits": {
             "ahead": ahead,
-            "behind": behind
+            "behind": behind,
         },
         "files": {
             "staged": staged,
             "unstaged": unstaged,
-            "untracked": untracked
-        }
+            "untracked": untracked,
+        },
     }

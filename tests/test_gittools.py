@@ -1,7 +1,7 @@
 from extratools_gittools.status import parse_status
 
 
-def test_parse_status_initial():
+def test_parse_status_initial() -> None:
     output = """
 # branch.oid (initial)
 # branch.head main
@@ -25,7 +25,7 @@ def test_parse_status_initial():
     }
 
 
-def test_parse_status_staged():
+def test_parse_status_staged() -> None:
     output = """
 # branch.oid (initial)
 # branch.head main
@@ -52,7 +52,7 @@ def test_parse_status_staged():
     }
 
 
-def test_parse_status_unstaged():
+def test_parse_status_unstaged() -> None:
     output = """
 # branch.oid (initial)
 # branch.head main
@@ -79,7 +79,7 @@ def test_parse_status_unstaged():
     }
 
 
-def test_parse_status_staged_unstaged():
+def test_parse_status_staged_unstaged() -> None:
     output = """
 # branch.oid (initial)
 # branch.head main
@@ -108,12 +108,12 @@ def test_parse_status_staged_unstaged():
     }
 
 
-def test_parse_status_untracked():
+def test_parse_status_untracked() -> None:
     output = """
 # branch.oid (initial)
 # branch.head main
 ? README.md
-""".strip()  # noqa: E501
+""".strip()
 
     assert parse_status(output) == {
         "oid": "(initial)",
@@ -135,7 +135,7 @@ def test_parse_status_untracked():
     }
 
 
-def test_parse_status_upstream():
+def test_parse_status_upstream() -> None:
     output = """
 # branch.oid 19d6f23b52c565b61f4532f6154ecc000d2d0524
 # branch.head main
@@ -161,7 +161,7 @@ def test_parse_status_upstream():
     }
 
 
-def test_parse_status_behind():
+def test_parse_status_behind() -> None:
     output = """
 # branch.oid 1bd851ae2c067354194ee6f5a44aa7cf954a22ec
 # branch.head main
@@ -187,7 +187,7 @@ def test_parse_status_behind():
     }
 
 
-def test_parse_status_ahead():
+def test_parse_status_ahead() -> None:
     output = """
 # branch.oid 198adc95d6f983eca1ccb3eb4b1c7efc735a0c93
 # branch.head main

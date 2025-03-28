@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any
 
 from colors import color
 
@@ -10,7 +10,7 @@ def get_prompt() -> str:
     if status is None:
         return ""
 
-    branch: Optional[str] = status["branch"]["head"]
+    branch: str | None = status["branch"]["head"]
     has_remote: bool = status["branch"]["upstream"] is not None
     ahead: int = status["commits"]["ahead"]
     behind: int = status["commits"]["behind"]
