@@ -54,7 +54,7 @@ toml = [
 ]
 
 [[package]]
-name = "extratools-gittools"
+name = "extratools-git"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
