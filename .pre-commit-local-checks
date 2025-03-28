@@ -2,6 +2,6 @@
 
 . "$(poetry env info --path)/bin/activate"
 
-mypy src
+mypy --install-types src
 
-pytest tests
+pytest
