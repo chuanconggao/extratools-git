@@ -6,10 +6,10 @@ import sh
 
 def get_status(path: str = '.') -> dict[str, Any] | None:
     try:
-        output: str = str(sh.git(
+        output: str = sh.git(
             "status", "--short", "--branch", "--porcelain=2",
             _cwd=Path(path).expanduser(),
-        ))
+        )
     except Exception:
         return None
 
