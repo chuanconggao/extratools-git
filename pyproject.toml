@@ -25,6 +25,7 @@ print_git_prompt = "extratools_git.prompt:print_prompt"
 dev = [
     "pytest-cov>=4.1.0",
     "mypy>=1.7.1",
+    "ipython>=9.1.0",
 ]
 
 [tool.coverage.run]
