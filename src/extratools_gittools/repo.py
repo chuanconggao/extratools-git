@@ -75,14 +75,15 @@ class Repo:
             "reset",
         )
 
-    def commit(self, message: str, *, stage_all: bool = True) -> None:
+    def commit(self, message: str, *, stage_all: bool = True, background: bool = False) -> None:
         args: list[str] = ["--all"] if stage_all else []
 
         self.__git(
             "commit", *args, f"--message={message}",
+            _bg=background,
         )
 
-    def pull(self, *, rebase: bool = True) -> None:
+    def pull(self, *, rebase: bool = True, background: bool = False) -> None:
         if not self.is_clean():
             msg = "Repo is not clean."
             raise RuntimeError(msg)
@@ -91,13 +92,15 @@ class Repo:
 
         self.__git(
             "pull", *args,
+            _bg=background,
         )
 
-    def push(self) -> None:
+    def push(self, *, background: bool = False) -> None:
         if not self.is_clean():
             msg = "Repo is not clean."
             raise RuntimeError(msg)
 
         self.__git(
             "push",
+            _bg=background,
         )
