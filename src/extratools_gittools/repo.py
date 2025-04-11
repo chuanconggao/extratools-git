@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import os
+from collections.abc import Sequence
 from pathlib import Path
 from typing import Any
 
@@ -104,3 +105,27 @@ class Repo:
             "push",
             _bg=background,
         )
+
+    def list_commits(
+        self,
+        relative_path: Path | str | None = None,
+        *,
+        max_count: int | None = None,
+    ) -> Sequence[str]:
+        args: list[str] = []
+
+        if max_count:
+            args.append(f"--max-count={max_count}")
+
+        if relative_path:
+            args.append(str(relative_path))
+
+        output: str = self.__git(
+            "log", "--oneline", "--reverse", *args,
+            _tty_out=False,
+        )
+
+        return [
+            line.split(' ')[0]
+            for line in output.strip().splitlines()
+        ]
