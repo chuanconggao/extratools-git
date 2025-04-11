@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import UTC, datetime, timedelta
 import os
 from collections.abc import Sequence
 from io import BytesIO
@@ -112,8 +113,15 @@ class Repo:
         relative_path: Path | str | None = None,
         *,
         max_count: int | None = None,
+        before: datetime | timedelta | None = None,
     ) -> Sequence[str]:
         args: list[str] = []
+
+        if before:
+            if isinstance(before, timedelta):
+                before = datetime.now(UTC) - before
+
+            args.append(f"--before={before.isoformat()}")
 
         if max_count:
             args.append(f"--max-count={max_count}")
