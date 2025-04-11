@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import os
 from collections.abc import Sequence
+from io import BytesIO
 from pathlib import Path
 from typing import Any
 
@@ -129,3 +130,33 @@ class Repo:
             line.split(' ')[0]
             for line in output.strip().splitlines()
         ]
+
+    def get_blob(
+        self,
+        relative_path: Path | str,
+        *,
+        version: str | int | None = None,
+    ) -> bytes:
+        blob_path: Path = self.__path / relative_path
+
+        try:
+            if version is None:
+                return blob_path.read_bytes()
+
+            if isinstance(version, int):
+                commits: Sequence[str] = self.list_commits(
+                    relative_path,
+                    max_count=(-version if version < 0 else None),
+                )
+
+                version = commits[version]
+
+            bio = BytesIO()
+            self.__git(
+                "show", f"{version}:{relative_path}",
+                _out=bio,
+                _tty_out=False,
+            )
+            return bio.getvalue()
+        except Exception as e:
+            raise FileNotFoundError from e
