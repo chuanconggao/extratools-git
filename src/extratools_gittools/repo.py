@@ -143,7 +143,7 @@ class Repo:
         self,
         relative_path: Path | str,
         *,
-        version: str | int | None = None,
+        version: str | int | datetime | timedelta | None = None,
     ) -> bytes:
         blob_path: Path = self.__path / relative_path
 
@@ -158,6 +158,14 @@ class Repo:
                 )
 
                 version = commits[version]
+            elif isinstance(version, (datetime, timedelta)):
+                commits: Sequence[str] = self.list_commits(
+                    relative_path,
+                    max_count=1,
+                    before=version,
+                )
+
+                version = commits[0]
 
             bio = BytesIO()
             self.__git(
